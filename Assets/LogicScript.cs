@@ -29,13 +29,11 @@ public class LogicScript : MonoBehaviour
     {
         if (playerScore > highScore){
             Debug.Log("New High Score");
-            highScore = playerScore;
-            PlayerPrefs.SetInt("High Score", highScore);
-            highScoreText.text=highScore.ToString();
-            Debug.Log("High Score Updated");
+            PlayerPrefs.SetInt("High Score", playerScore);
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
+        highScore = PlayerPrefs.GetInt("High Score", -1); 
+        highScoreText.text=highScore.ToString();
     }
 
     public void gameOver()
@@ -54,6 +52,6 @@ public class LogicScript : MonoBehaviour
         bird.SetActive(true);
         pipes.SetActive(true);
         scoreText.gameObject.SetActive(true);
-        highScore = PlayerPrefs.GetInt("High Score", -1); 
+
     }
 }
